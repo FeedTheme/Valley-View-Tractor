@@ -69,6 +69,8 @@ function vvt_widgets_init() {
 		'before_title'  => '<h1 class="widget-title">',
 		'after_title'   => '</h1>',
 	) );
+
+	//Placeholder for probably a dozen more sidebars (footer and home page)
 }
 add_action( 'widgets_init', 'vvt_widgets_init' );
 
