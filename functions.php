@@ -80,13 +80,46 @@ add_action( 'widgets_init', 'vvt_widgets_init' );
 function vvt_scripts() {
 	$scheme = is_ssl() ? 'https://' : 'http://';
 
+	/* Google Font Styles */
+    wp_enqueue_style( 'google-font-archivo', $scheme . 'fonts.googleapis.com/css?family=Archivo+Narrow:700' );
+    wp_enqueue_style( 'google-font-droid-sans', $scheme . 'fonts.googleapis.com/css?family=Droid+Sans' );
+    wp_enqueue_style( 'google-font-courgette', $scheme . 'fonts.googleapis.com/css?family=Courgette' );
+
+    /* Template Styles */
+	wp_enqueue_style( 'vvt-bootstrap', get_template_directory_uri() . '/css/bootstrap.css' );
+	wp_enqueue_style( 'vvt-default', get_template_directory_uri() . '/css/default.css' );
+	wp_enqueue_style( 'vvt-template', get_template_directory_uri() . '/css/template.css' );
+	wp_enqueue_style( 'vvt-touch-gallery', get_template_directory_uri() . '/css/touch.gallery.css' );
+	wp_enqueue_style( 'vvt-responsive', get_template_directory_uri() . '/css/responsive.css' );
+	wp_enqueue_style( 'vvt-layout', get_template_directory_uri() . '/css/layout.css' );
+	wp_enqueue_style( 'vvt-camera', get_template_directory_uri() . '/css/camera.css' );
+	wp_enqueue_style( 'vvt-superfish', get_template_directory_uri() . '/css/superfish.css' );
+
+	/* Joomla Comment Extension (Can probably remove) */
+	wp_enqueue_style( 'vvt-komento', get_template_directory_uri() . '/css/komento.css' );
+
+	/* Our Style */
 	wp_enqueue_style( 'vvt-style', get_stylesheet_uri() );
-    wp_enqueue_style( 'google-font-archivo', $scheme . 'fonts.googleapis.com/css?family=Archivo+Narrow:700');
-    wp_enqueue_style( 'google-font-droid-sans', $scheme . 'fonts.googleapis.com/css?family=Droid+Sans');
-    wp_enqueue_style( 'google-font-courgette', $scheme . 'fonts.googleapis.com/css?family=Courgette');
+
+	wp_enqueue_script( 'vvt-mootools', get_template_directory_uri() . '/js/mootools.js', array(), '20120206', true );
+	wp_enqueue_script( 'vvt-bootstrap', get_template_directory_uri() . '/js/bootstrap.js', array(), '20120206', true );
+	wp_enqueue_script( 'vvt-easing', get_template_directory_uri() . '/js/jquery.easing.js', array( 'jquery' ), '20120206', true );
+	wp_enqueue_script( 'vvt-isotope', get_template_directory_uri() . '/js/isotope.js', array( 'jquery' ), '20120206', true );
+	wp_enqueue_script( 'vvt-gallery', get_template_directory_uri() . '/js/touch.gallery.js', array( 'jquery' ), '20120206', true );
+	wp_enqueue_script( 'vvt-base', get_template_directory_uri() . '/js/scripts.js', array( 'jquery' ), '20120206', true );
+	wp_enqueue_script( 'vvt-camera', get_template_directory_uri() . '/js/camera.js', array( 'jquery' ), '20120206', true );
+
+	if ( wp_is_mobile() ) {
+		wp_enqueue_script( 'vvt-mobile', get_template_directory_uri() . '/js/mobile.js', array( 'jquery' ), '20120206', true );
+		wp_enqueue_script( 'vvt-mobile-menu', get_template_directory_uri() . '/js/mobile-menu.js', array( 'jquery' ), '20120206', true );
+	}
+
+	wp_enqueue_script( 'vvt-superfish', get_template_directory_uri() . '/js/superfish.js', array( 'jquery' ), '20120206', true );
+	wp_enqueue_script( 'vvt-hover-intent', get_template_directory_uri() . '/js/hover-intent.js', array( 'jquery' ), '20120206', true );
+	wp_enqueue_script( 'vvt-super-subs', get_template_directory_uri() . '/js/super-subs.js', array( 'jquery' ), '20120206', true );
+	wp_enqueue_script( 'vvt-touch-screen', get_template_directory_uri() . '/js/touch-screen.js', array( 'jquery' ), '20120206', true );
 
 	wp_enqueue_script( 'vvt-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
-
 	wp_enqueue_script( 'vvt-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -95,11 +128,6 @@ function vvt_scripts() {
 }
 
 add_action( 'wp_enqueue_scripts', 'vvt_scripts' );
-
-/**
- * Implement the Custom Header feature.
- */
-//require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
